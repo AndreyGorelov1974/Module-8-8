@@ -22,7 +22,6 @@
 
 int main()
 {
-
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
@@ -63,5 +62,4 @@ int main()
 	}
 
 	std::cout << "Количество бактерий в конце эксперимента: " << numberBacteria << "." << std::endl;
-
 }
