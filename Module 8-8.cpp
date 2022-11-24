@@ -54,7 +54,7 @@ int main()
 	}
 
 	
-	for (int i = 1; i < 20; i++) {
+	for (int i = 1; i <= 20; i++) {
 		numberBacteria = (numberBacteria * 2) - (numberBacteria * (antibioticDrops / waterDrops));
 		if (numberBacteria < 0) numberBacteria = 0;
 		std::cout << "После " << i << " часа бактерий осталось " << numberBacteria << std::endl;
