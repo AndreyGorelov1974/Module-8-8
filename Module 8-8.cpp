@@ -26,6 +26,9 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
+	//Задаём % разложения антибиотика
+	int percentDeactivateAntibiotic = 20;
+
 	std::cout << "Введите количество бактерий: ";
 	int numberBacteria;
 	std::cin >> numberBacteria;
@@ -42,19 +45,22 @@ int main()
 		std::cin >> antibioticDrops;
 	}
 
-	//Задаём время действия антибиотика
-	int durationActionAntibiotic = 10;
-	int passedHour = 1;
-
-	while (durationActionAntibiotic > 0 && numberBacteria > 0) {
-		numberBacteria = (numberBacteria * 2) - (durationActionAntibiotic * antibioticDrops);
-		if (numberBacteria < 0) numberBacteria = 0;
-		std::cout << "После " << passedHour << " часа бактерий осталось " << numberBacteria << std::endl;
-		durationActionAntibiotic--;
-		passedHour++;
+	std::cout << "Введите количество воды: ";
+	int waterDrops;
+	std::cin >> waterDrops;
+	while (waterDrops < 0) {
+		std::cout << "Количество воды должно быть больше 0. Введите снова: ";
+		std::cin >> waterDrops;
 	}
 
-	if (durationActionAntibiotic == 0) std::cout << "Действие антибиотика закончилось.";
-	if (numberBacteria == 0) std::cout << "Все бактерии погибли!";
+	
+	for (int i = 1; i < 20; i++) {
+		numberBacteria = (numberBacteria * 2) - (numberBacteria * (antibioticDrops / waterDrops));
+		if (numberBacteria < 0) numberBacteria = 0;
+		std::cout << "После " << i << " часа бактерий осталось " << numberBacteria << std::endl;
+		antibioticDrops -= (antibioticDrops * 20) / 100;
+	}
+
+	std::cout << "Все бактерии погибли!" << numberBacteria;
 
 }
