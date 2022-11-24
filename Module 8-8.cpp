@@ -53,12 +53,15 @@ int main()
 		std::cin >> waterDrops;
 	}
 
+	// Вычисляем количество деактивировнных капель антибиотика в минуту
+	int dropDeactivateAntibiotic = (antibioticDrops * percentDeactivateAntibiotic) / 100;
 	
 	for (int i = 1; i <= 20; i++) {
 		numberBacteria = (numberBacteria * 2) - (numberBacteria * (antibioticDrops / waterDrops));
 		if (numberBacteria < 0) numberBacteria = 0;
 		std::cout << "После " << i << " часа бактерий осталось " << numberBacteria << std::endl;
-		antibioticDrops -= (antibioticDrops * 20) / 100;
+		antibioticDrops -= dropDeactivateAntibiotic;
+		std::cout << antibioticDrops << std::endl;
 	}
 
 	std::cout << "Все бактерии погибли!" << numberBacteria;
