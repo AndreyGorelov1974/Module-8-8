@@ -16,3 +16,45 @@
 Количество измеряется в целых числах.
 Ничто не уходит в отрицательные значения.
 Цикл не бесконечный.*/
+
+#include <iostream>
+#include <Windows.h>
+
+int main()
+{
+
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	std::cout << "Введите количество бактерий: ";
+	int numberBacteria;
+	std::cin >> numberBacteria;
+	while (numberBacteria < 0) {
+		std::cout << "Количество бактерий должно быть больше 0. Введите снова: ";
+		std::cin >> numberBacteria;
+	}
+
+	std::cout << "Введите количество антибиотика: ";
+	int antibioticDrops;
+	std::cin >> antibioticDrops;
+	while (antibioticDrops < 0) {
+		std::cout << "Количество антибиотика должно быть больше 0. Введите снова: ";
+		std::cin >> antibioticDrops;
+	}
+
+	//Задаём время действия антибиотика
+	int durationActionAntibiotic = 10;
+	int passedHour = 1;
+
+	while (durationActionAntibiotic > 0 && numberBacteria > 0) {
+		numberBacteria = (numberBacteria * 2) - (durationActionAntibiotic * antibioticDrops);
+		if (numberBacteria < 0) numberBacteria = 0;
+		std::cout << "После " << passedHour << " часа бактерий осталось " << numberBacteria << std::endl;
+		durationActionAntibiotic--;
+		passedHour++;
+	}
+
+	if (durationActionAntibiotic == 0) std::cout << "Действие антибиотика закончилось.";
+	if (numberBacteria == 0) std::cout << "Все бактерии погибли!";
+
+}
